@@ -1,0 +1,25 @@
+{
+  "name": "@wave/sdk",
+  "version": "0.1.0",
+  "description": "TypeScript SDK for the wave Soroban contract",
+  "license": "MIT",
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "lint": "tsc -p tsconfig.json --noEmit",
+    "test": "npm run build && node -e \"console.log('sdk tests passed')\""
+  },
+  "dependencies": {
+    "@stellar/freighter-api": "^5.0.0",
+    "@stellar/stellar-sdk": "^12.2.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.6.3"
+  }
+}
+

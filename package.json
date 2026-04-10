@@ -1,0 +1,15 @@
+{
+  "name": "wave",
+  "private": true,
+  "version": "0.1.0",
+  "license": "MIT",
+  "workspaces": [
+    "sdk"
+  ],
+  "scripts": {
+    "build": "npm run --prefix sdk build",
+    "test": "cargo test --workspace && npm run --prefix sdk test",
+    "lint": "cargo clippy --workspace --all-targets -- -D warnings && npm run --prefix sdk lint"
+  }
+}
+

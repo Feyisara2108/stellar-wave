@@ -1,0 +1,8 @@
+[workspace]
+members = ["contracts/wave-contract"]
+resolver = "2"
+
+[workspace.package]
+license = "MIT"
+edition = "2021"
+repository = "https://github.com/example/wave"

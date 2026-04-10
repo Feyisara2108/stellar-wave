@@ -1,0 +1,26 @@
+{
+  "project": "wave",
+  "network": "stellar-testnet",
+  "stream_source": "GDL7I3XJ4E6T4QTSB7PR4KOBUPQY4NATKCB6QWQH7JRN2LDEQ2M2EXAMPLE",
+  "recipient": "GA3ZK4MNQZB7R7N77N6Y5LQW7JCTAN7WQOGDAXJ2YF5YJX67H5EXAMPLE",
+  "token": "XLM",
+  "total_amount": "50000",
+  "duration_days": "180",
+  "milestone_triggers": [
+    {
+      "id": "M1",
+      "name": "Testnet release",
+      "evidence": "https://github.com/example/wave/releases/tag/v0.1.0-testnet"
+    },
+    {
+      "id": "M2",
+      "name": "Security review milestone",
+      "evidence": "https://github.com/example/wave/security/audit-plan"
+    },
+    {
+      "id": "M3",
+      "name": "SDK and docs completion",
+      "evidence": "https://github.com/example/wave/tree/main/docs"
+    }
+  ]
+}
