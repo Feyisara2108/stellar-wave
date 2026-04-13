@@ -1,0 +1,44 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:15-alpine
+    environment:
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: stellar_wave
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U root -d stellar_wave"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  backend-api:
+    build: 
+      context: .
+      dockerfile: backend/api/Dockerfile
+    ports:
+      - "3000:3000"
+    environment:
+      - DATABASE_URL=postgresql://root:password@postgres:5432/stellar_wave?schema=public
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+  backend-indexer:
+    build: 
+      context: .
+      dockerfile: backend/indexer/Dockerfile
+    environment:
+      - DATABASE_URL=postgresql://root:password@postgres:5432/stellar_wave?schema=public
+      - SOROBAN_RPC_URL=https://soroban-testnet.stellar.org
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+volumes:
+  postgres_data:

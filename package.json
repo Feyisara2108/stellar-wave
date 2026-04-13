@@ -1,15 +1,17 @@
 {
-  "name": "wave",
+  "name": "stellar-wave",
   "private": true,
   "version": "0.1.0",
   "license": "MIT",
-  "workspaces": [
-    "sdk"
-  ],
+  "engines": {
+    "node": ">=18",
+    "pnpm": ">=8"
+  },
   "scripts": {
-    "build": "npm run --prefix sdk build",
-    "test": "cargo test --workspace && npm run --prefix sdk test",
-    "lint": "cargo clippy --workspace --all-targets -- -D warnings && npm run --prefix sdk lint"
+    "dev": "pnpm -r run dev",
+    "build": "pnpm -r run build",
+    "test": "cargo test --manifest-path contracts/wave-contract/Cargo.toml && pnpm -r run test",
+    "lint": "cargo clippy --manifest-path contracts/wave-contract/Cargo.toml --all-targets -- -D warnings && pnpm -r run lint"
   }
 }
 

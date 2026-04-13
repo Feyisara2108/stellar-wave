@@ -1,0 +1,33 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Stream {
+  id             String   @id
+  sender         String
+  recipient      String
+  token          String
+  totalAmount    BigInt
+  claimedAmount  BigInt   @default(0)
+  startLedger    Int
+  cliffLedger    Int
+  endLedger      Int
+  canceled       Boolean  @default(false)
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+  
+  claims         Claim[]
+}
+
+model Claim {
+  id        String   @id @default(uuid())
+  streamId  String
+  stream    Stream   @relation(fields: [streamId], references: [id])
+  amount    BigInt
+  createdAt DateTime @default(now())
+}
